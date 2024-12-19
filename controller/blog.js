@@ -1,4 +1,5 @@
 import {blog} from '../models/blog.js'
+import {User} from '../models/user.js'
 
 export const createBlog=async(req,res)=>{
     const {title,description,imgUrl}=req.body
@@ -63,3 +64,38 @@ export const deleteBlog=async(req,res)=>{
         
          })
 }
+
+export const getAllBlogs=async(req,res)=>{
+  
+    const blogs= await blog.find()
+    if(!blogs) return res.status(404).json({
+        success:false,
+        message:"There is not blogs"
+    })
+
+    res.status(200).json({
+        success:true,
+        message:" All Blog ",
+        blogs
+         })
+}
+
+export const getBlogById=async(req,res)=>{
+
+    const id=req.params.id
+    const blogs= await blog.findById(id)
+    if(!blogs) return res.status(404).json({
+        success:false,
+        message:"Invalid ID"
+    })
+    
+
+    res.status(200).json({
+        success:true,
+        message:" Your Blog ",
+        blogs
+         })
+}
+
+
+
