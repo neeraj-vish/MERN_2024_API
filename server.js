@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL, 
+origin: ['http://localhost:5174', 'https://blog-app-by-using-mern.vercel.app'], 
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, 
 }));
