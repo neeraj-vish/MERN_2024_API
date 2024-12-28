@@ -6,18 +6,18 @@ import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import cors from 'cors';
 
-// Configure environment variables
+
 config({ path: "./data/config.env" });
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Allow the frontend URL
+  origin: process.env.FRONTEND_URL, 
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // Allow cookies to be sent across origins
+  credentials: true, 
 }));
 
 // MongoDB Connection
@@ -40,11 +40,10 @@ app.get('/', (req, res) => {
 });
 
 // Port Configuration
-const port = process.env.PORT || 4000; // Use 4000 as the fallback port
+const port = process.env.PORT || 4000; 
 
 // Start the Server
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server started at port ${port}`);
 });
-
 
